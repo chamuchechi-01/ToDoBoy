@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to ToDoBoy</title>
+
+    {% load widget_tweaks %}
+    {% load static %}
+
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">ToDoBoy</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'task_list' %}">Task List</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="welcome-container">
+        <h1>Welcome to ToDoBoy</h1>
+        <p>Organize your tasks, get things done, and stay productive!</p>
+        <a href="{% url 'task_list' %}" class="btn btn-custom">Go to Task List</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 ToDoBoy. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

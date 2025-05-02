@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoBoy - Task List</title>
+
+    {% load static %}
+    {% load widget_tweaks %}
+
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">ToDoBoy</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'task_list' %}">To-Do List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_task' %}">Create Task</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Task List</h1>
+
+        <ul class="list-group">
+            {% for task in tasks %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>{{ task.name }}</strong> - 
+                        {% if task.status == 'done' %}
+                            <span class="text-success"> Done</span>
+                        {% elif task.status == 'not_done' %}
+                            <span class="text-danger"> Not Done</span>
+                        {% else %}
+                            <span class="text-warning"> In Progress</span>
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        <a href="{% url 'update_task_status' task.id %}" class="btn btn-sm btn-warning me-2">Update Status</a>
+                        <a href="{% url 'task_delete' task.id %}" onclick="return confirm('Are you sure you want to delete this task?');" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
